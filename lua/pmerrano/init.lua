@@ -37,7 +37,7 @@ local bufferline = require('bufferline')
             diagnostics = "nvim_lsp",
             diagnostics_update_on_event = true, -- use nvim's diagnostic handler
             -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-            diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            diagnostics_indicator = function(count)
                 return "("..count..")"
             end,
             -- NOTE: this will be called a lot so don't do any heavy processing here
@@ -62,9 +62,8 @@ local bufferline = require('bufferline')
               return icon, hl
             end,
             show_buffer_icons = true, -- disable filetype icons for buffers
-            show_buffer_close_icons = false,
+            show_buffer_close_icons = true,
             show_close_icon = false,
-	    show_buffer_close_icon = true,
             show_tab_indicators = true,
             show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
             duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates

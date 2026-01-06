@@ -11,6 +11,9 @@ vim.keymap.set({ 'n' }, '<A-j>', '<C-w>j')
 vim.keymap.set({ 'n' }, '<A-k>', '<C-w>k')
 vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
 
+-- Mapping for additional navigation
+vim.keymap.set({ 'n' }, '<Leader>p', ':Telescope projects<cr>')
+
 -- Mapping managment for buffer tabs in normal mode:
 vim.keymap.set({ 'n' }, '<Leader><tab>', ':bnext<cr>')
 vim.keymap.set({ 'n' }, '<Leader>w', ':w<cr>')
