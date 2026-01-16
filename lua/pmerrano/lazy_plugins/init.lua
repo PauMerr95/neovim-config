@@ -1,12 +1,13 @@
 return {
     require("pmerrano.lazy_plugins.treesitter"),
     require("pmerrano.lazy_plugins.telescope"),
-    require("pmerrano.lazy_plugins.tokyonight"),
     require("pmerrano.lazy_plugins.mason"),
     require("pmerrano.lazy_plugins.lualine"),
-    require("pmerrano.lazy_plugins.yazi"),
-    require("pmerrano.lazy_plugins.neo-tree"),
-    require("pmerrano.lazy_plugins.bufferline"),
     require("pmerrano.lazy_plugins.smear-cursor"),
     require("pmerrano.lazy_plugins.project"),
+    require("pmerrano.lazy_plugins.mini-tabline"),
+    require("pmerrano.lazy_plugins.material-theme"),
+    require("pmerrano.lazy_plugins.fugitive"),
+    require("pmerrano.lazy_plugins.git-signs"),
+    require("pmerrano.lazy_plugins.neo-tree")
 }

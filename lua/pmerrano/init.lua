@@ -5,86 +5,18 @@ vim.g.mapleader = ' '
 
 require("pmerrano.lazy_init")
 require("pmerrano.keymaps")
+require("pmerrano.lsp")
+
 
 -- additional configs for plugins:
+require('mini.tabline').setup()
 
--- config setting for bufferline:
-local bufferline = require('bufferline')
-    bufferline.setup {
-        options = {
-            mode = "buffers", -- set to "tabs" to only show tabpages instead
-            style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
-            close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
-            right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
-            left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"
-            middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
-            indicator = {
-                style = 'underline',
-            },
-            buffer_close_icon = '󰅖',
-            modified_icon = '● ',
-            close_icon = ' ',
-            left_trunc_marker = ' ',
-            right_trunc_marker = ' ',
-            --- name_formatter can be used to change the buffer's label in the bufferline.
-            --- Please note some names can/will break the
-            --- bufferline so use this at your discretion knowing that it has
-            --- some limitations that will *NOT* be fixed.
-            max_name_length = 18,
-            max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-            truncate_names = true, -- whether or not tab names should be truncated
-            tab_size = 18,
-            diagnostics = "nvim_lsp",
-            diagnostics_update_on_event = true, -- use nvim's diagnostic handler
-            -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-            diagnostics_indicator = function(count)
-                return "("..count..")"
-            end,
-            -- NOTE: this will be called a lot so don't do any heavy processing here
-            offsets = {
-                {
-                    filetype = "NvimTree",
-                    text = "File Explorer",
-                    text_align = "left",
-                    separator = true
-                }
-            },
-            color_icons = true, -- whether or not to add the filetype icon highlights
-            get_element_icon = function(element)
-              -- element consists of {filetype: string, path: string, extension: string, directory: string}
-              -- This can be used to change how bufferline fetches the icon
-              -- for an element e.g. a buffer or a tab.
-              -- e.g.
-            local icon, hl = require('nvim-web-devicons')
-	      .get_icon_by_filetype(element.filetype, {
-		      default = false
-	      })
-              return icon, hl
-            end,
-            show_buffer_icons = true, -- disable filetype icons for buffers
-            show_buffer_close_icons = true,
-            show_close_icon = false,
-            show_tab_indicators = true,
-            show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
-            duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
-            persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-            move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position
-            -- can also be a table containing 2 custom separators
-            -- [focused and unfocused]. eg: { '|', '|' }
-            separator_style = "slant",
-            enforce_regular_tabs = true,
-            always_show_bufferline = true,
-            auto_toggle_bufferline = true,
-            sort_by = 'insert_at_end',
-            pick = {
-              alphabet = "abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ1234567890",
-            },
-        }
-    }
-
+vim.g.material_style = "deep ocean"
+vim.cmd 'colorscheme material'
 
 -- Let diagnostics show inside the buffer
 vim.diagnostic.config({virtual_text = true})
+
 
 -- [[ Setting options ]] See `:h vim.o`
 -- NOTE: You can change these options as you wish!
@@ -101,12 +33,6 @@ vim.o.relativenumber = true
 
 -- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
 -- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
--- See `:help 'clipboard'`
-vim.api.nvim_create_autocmd('UIEnter', {
-  callback = function()
-    vim.o.clipboard = 'unnamedplus'
-  end,
-})
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.o.ignorecase = true
@@ -118,8 +44,16 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
--- Show <tab> and trailing spaces
+-- Tab configuration
 vim.o.list = true
+vim.o.tabstop = 4
+vim.o.expandtab = true
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+
+-- 80 charactar guard
+vim.opt.colorcolumn = "100"
+vim.cmd [[highlight ColorColumn ctermbg=darkgrey guibg=darkgrey]]
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s) See `:help 'confirm'`
@@ -149,10 +83,4 @@ vim.api.nvim_create_user_command('GitBlameLine', function()
   print(vim.fn.system({ 'git', 'blame', '-L', line_number .. ',+1', filename }))
 end, { desc = 'Print the git blame for the current line' })
 
--- [[ Add optional packages ]]
--- Nvim comes bundled with a set of packages that are not enabled by
--- default. You can enable any of them by using the `:packadd` command.
-
--- For example, to add the "nohlsearch" package to automatically turn off search highlighting after
--- 'updatetime' and when going to insert mode
 vim.cmd('packadd! nohlsearch')

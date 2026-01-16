@@ -13,14 +13,16 @@ vim.keymap.set({ 'n' }, '<A-l>', '<C-w>l')
 
 -- Mapping for additional navigation
 vim.keymap.set({ 'n' }, '<Leader>p', ':Telescope projects<cr>')
+vim.keymap.set({ 'n' }, '<C-p>', ':Telescope<cr>')
 
 -- Mapping managment for buffer tabs in normal mode:
-vim.keymap.set({ 'n' }, '<Leader><tab>', ':bnext<cr>')
+vim.keymap.set({ 'n' }, '<]b>', ':bnext<cr>')
+vim.keymap.set({ 'n' }, '<[b>', ':bprevious<cr>')
 vim.keymap.set({ 'n' }, '<Leader>w', ':w<cr>')
 vim.keymap.set({ 'n' }, '<Leader>q', ':bd<cr>')
 
 -- setting "-" for neo-tree to open the filesystem
-vim.keymap.set('n', '-', function()
+vim.keymap.set('n', '<Leader>e', function()
     local reveal_file = vim.fn.expand('%:p')
     if (reveal_file == '') then
       reveal_file = vim.fn.getcwd()
@@ -43,5 +45,15 @@ vim.keymap.set('n', '-', function()
     end,
     { desc = "Open neo-tree at current file or working directory" }
   );
+
+-- Mapping for Telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+
+
 
 

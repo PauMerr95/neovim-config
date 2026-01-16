@@ -17,7 +17,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "pmerrano.lazy_plugins" }
 	},
-	install = { colorscheme = { "habamax" } },
+	install = { colorscheme = { "material" } },
 	change_detection = { notify = false },
 	checker = { enable = true},
 })
