@@ -9,5 +9,5 @@ return {
     require("pmerrano.lazy_plugins.material-theme"),
     require("pmerrano.lazy_plugins.fugitive"),
     require("pmerrano.lazy_plugins.git-signs"),
-    require("pmerrano.lazy_plugins.neo-tree")
+    require("pmerrano.lazy_plugins.neo-tree"),
 }
