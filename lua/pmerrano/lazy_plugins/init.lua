@@ -1,4 +1,5 @@
 return {
+    require("pmerrano.lazy_plugins.lazydev"),
     require("pmerrano.lazy_plugins.treesitter"),
     require("pmerrano.lazy_plugins.telescope"),
     require("pmerrano.lazy_plugins.mason"),

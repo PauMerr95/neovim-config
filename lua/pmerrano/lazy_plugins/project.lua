@@ -1,5 +1,6 @@
 return {
 	"ahmedkhalf/project.nvim",
+    event = "VimEnter",
     version = false;
 	config = function()
 		require("project_nvim").setup({
