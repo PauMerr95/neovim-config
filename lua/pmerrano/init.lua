@@ -5,13 +5,15 @@ vim.g.mapleader = ' '
 
 require("pmerrano.lazy_init")
 require("pmerrano.keymaps")
-require("pmerrano.lsp")
 
 
 -- additional configs for plugins:
 
 -- tabline mini
 require('mini.tabline').setup()
+
+-- debugger config
+
 
 -- theme material
 vim.g.material_style = "deep ocean"
@@ -20,7 +22,7 @@ vim.cmd 'colorscheme material'
 
 -- Let diagnostics show inside the buffer
 vim.diagnostic.config({virtual_text = true})
-
+vim.opt.syntax = "off"
 
 -- Print the line number in front of each line
 vim.o.number = true
@@ -44,14 +46,17 @@ vim.o.scrolloff = 10
 
 -- Tab configuration
 vim.o.list = true
-vim.o.tabstop = 4
+vim.o.tabstop = 2
 vim.o.expandtab = true
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 
 -- 80 charactar guard
 vim.opt.colorcolumn = "100"
 vim.cmd [[highlight ColorColumn ctermbg=darkgrey guibg=darkgrey]]
+
+--merge clipboard
+vim.opt.clipboard = "unnamedplus"
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s) See `:help 'confirm'`
@@ -67,7 +72,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Create user commands ]]
--- See `:h nvim_create_user_command()` and `:h user-commands`
+vim.lsp.set_log_level("off")
 
 vim.cmd('packadd! nohlsearch')

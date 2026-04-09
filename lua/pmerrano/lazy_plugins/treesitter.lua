@@ -3,8 +3,12 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   main = "nvim-treesitter.config",
   build = ":TSUpdate",
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
   config = function()
-    local configs = require("nvim-treesitter.config").setup({
+    require("nvim-treesitter.config").setup({
       ensure_installed = {
         "c", "lua", "vim", "vimdoc", "elixir", "javascript", "html", "python", "typescript", "cpp", "css"
       },

@@ -57,19 +57,25 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp','buffer', 'path', 'snippets' },
+      default = { 'lazydev', 'lsp','buffer', 'path', 'snippets'},
       providers = {
+          lazydev = {
+              name = "LazyDev",
+              enabled = true,
+              module = "lazydev.integrations.blink",
+              score_offset = 1000,
+          },
           lsp = {
               name = "lsp",
               enabled = true,
               module = "blink.cmp.sources.lsp",
-              score_offset = 1000,
+              score_offset = 900,
           },
           snippets = {
               name = "snippets",
               enabled = true,
               module = "blink.cmp.sources.snippets",
-              score_offset = 900,
+              score_offset = 700,
           },
       },
     },

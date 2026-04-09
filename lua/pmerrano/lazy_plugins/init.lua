@@ -13,4 +13,7 @@ return {
     require("pmerrano.lazy_plugins.neo-tree"),
     require("pmerrano.lazy_plugins.which-key"),
     require("pmerrano.lazy_plugins.blink"),
+    require("pmerrano.lazy_plugins.todo-comments"),
+    require("pmerrano.lazy_plugins.nvim-dap"),
+    require("pmerrano.lazy_plugins.nvim-dap-ui"),
 }
