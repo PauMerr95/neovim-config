@@ -72,6 +72,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level('off')
 
 vim.cmd('packadd! nohlsearch')

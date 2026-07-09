@@ -9,6 +9,7 @@ return {
             "lua_ls",
             "pyright",
             "clangd",
+            "angularls"
         }
     },
     config = function (_, opts)
@@ -39,6 +40,10 @@ return {
                   "clangd",
                   "--compile-commands-dir=" .. vim.fn.getcwd():gsub("\\", "/") .. "/build/debug",
                 }
+              })
+
+              vim.lsp.config("angularls", {
+                root_markers = { "angular.json", "tsconfig.json", "tsconfig.app.json", ".git"},
               })
 
               -- Python
@@ -76,6 +81,7 @@ return {
               -- enable configs
               vim.lsp.enable("clangd")
               vim.lsp.enable("pyright")
+              vim.lsp.enable("angularls")
             end,
         },
     },
