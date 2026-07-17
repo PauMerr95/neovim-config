@@ -1,15 +1,9 @@
 return {
-	"ahmedkhalf/project.nvim",
-    event = { "BufEnter" },
-    version = false;
-	config = function()
-      require("project_nvim").setup({
-      manual_mode = false,
-      detection_methods = { "lsp", "pattern" },
-      pattern = { ".git", "CMakeLists.txt", "pyproject.toml" },
-      show_hidden = false,
-      silent_chdir = false,
-      datapath = vim.fn.stdpath("data"),
-	  })
-	end,
+  'DrKJeff16/project.nvim',
+  cmd = { 'Project' }, -- Lazy-load by commands
+  dependencies = { -- OPTIONAL. Choose any of the following
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+    'ibhagwan/fzf-lua',
+  },
+  opts = {},
 }

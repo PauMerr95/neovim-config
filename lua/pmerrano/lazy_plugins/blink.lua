@@ -78,6 +78,9 @@ return {
               score_offset = 700,
           },
       },
+      per_filetype = {
+        codecompanion = { "codecompanion" },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
